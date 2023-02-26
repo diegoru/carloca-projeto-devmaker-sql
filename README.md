@@ -28,4 +28,4 @@ O sistema deve ser construído observando as seguintes regras:
 
 ##  DER - Carloca
 
-![](https://i.postimg.cc/5NYVwP4x/carloca.png)
+![](https://i.postimg.cc/prDyH7Rx/carloca.png)
