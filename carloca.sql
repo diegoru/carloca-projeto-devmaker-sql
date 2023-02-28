@@ -87,7 +87,6 @@ CREATE TABLE IF NOT EXISTS `carloca`.`telefone` (
   `ddd` VARCHAR(4) NOT NULL,
   `numero` VARCHAR(10) NOT NULL,
   `contato` VARCHAR(45) NOT NULL,
-  `contato` VARCHAR(90) NOT NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
