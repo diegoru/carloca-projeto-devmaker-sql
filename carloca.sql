@@ -1,7 +1,5 @@
-
 CREATE SCHEMA IF NOT EXISTS `carloca` DEFAULT CHARACTER SET utf8 ;
 USE `carloca` ;
-
 
 CREATE TABLE IF NOT EXISTS `carloca`.`cor` (
   `id` INT NOT NULL AUTO_INCREMENT,
@@ -25,7 +23,6 @@ CREATE TABLE IF NOT EXISTS `carloca`.`categoria` (
 ENGINE = InnoDB;
 
 
-
 CREATE TABLE IF NOT EXISTS `carloca`.`carro` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `modelo` VARCHAR(90) NOT NULL,
@@ -37,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `carloca`.`carro` (
   PRIMARY KEY (`id`),
   INDEX `fk_carro_1_idx` (`cor_id` ASC) VISIBLE,
   INDEX `fk_carro_2_idx` (`montadora_id` ASC) VISIBLE,
-  INDEX `fk3_carro_idx` (`categoria_id` ASC) VISIBLE,
+  INDEX `fk_carro_3_idx` (`categoria_id` ASC) VISIBLE,
   CONSTRAINT `fk_carro_1`
     FOREIGN KEY (`cor_id`)
     REFERENCES `carloca`.`cor` (`id`)
@@ -54,7 +51,6 @@ CREATE TABLE IF NOT EXISTS `carloca`.`carro` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
-
 
 
 CREATE TABLE IF NOT EXISTS `carloca`.`cliente` (
@@ -96,7 +92,7 @@ CREATE TABLE IF NOT EXISTS `carloca`.`franquia` (
   `nome` VARCHAR(45) NOT NULL,
   `endereco_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk1_franquia_idx` (`endereco_id` ASC) VISIBLE,
+  INDEX `fk_franquia_1_idx` (`endereco_id` ASC) VISIBLE,
   CONSTRAINT `fk_franquia_1`
     FOREIGN KEY (`endereco_id`)
     REFERENCES `carloca`.`endereco` (`id`)
@@ -108,16 +104,10 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `carloca`.`endereco_cliente` (
   `cliente_id` INT NOT NULL,
   `endereco_id` INT NOT NULL,
-  INDEX `fk1_endereco_cliente_idx` (`cliente_id` ASC) VISIBLE,
-  INDEX `fk2_endereco_cliente_idx` (`endereco_id` ASC) VISIBLE,
+  INDEX `fk_endereco_cliente_1_idx` (`cliente_id` ASC) VISIBLE,
+  INDEX `fk_endereco_cliente_2_idx` (`endereco_id` ASC) VISIBLE,
   CONSTRAINT `fk_endereco_cliente_1`
     FOREIGN KEY (`cliente_id`)
-  `id_cliente` INT NOT NULL,
-  `id_endereco` INT NOT NULL,
-  INDEX `fk1_endereco_cliente_idx` (`id_cliente` ASC) VISIBLE,
-  INDEX `fk2_endereco_cliente_idx` (`id_endereco` ASC) VISIBLE,
-  CONSTRAINT `fk1_endereco_cliente`
-    FOREIGN KEY (`id_cliente`)
     REFERENCES `carloca`.`cliente` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
@@ -132,16 +122,10 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `carloca`.`telefone_cliente` (
   `cliente_id` INT NOT NULL,
   `telefone_id` INT NOT NULL,
-  INDEX `fk1_telefone_cliente_idx` (`cliente_id` ASC) VISIBLE,
-  INDEX `fk2_telefone_cliente_idx` (`telefone_id` ASC) VISIBLE,
+  INDEX `fk_telefone_cliente_1_idx` (`cliente_id` ASC) VISIBLE,
+  INDEX `fk_telefone_cliente_2_idx` (`telefone_id` ASC) VISIBLE,
   CONSTRAINT `fk_telefone_cliente_1`
     FOREIGN KEY (`cliente_id`)
-  `id_cliente` INT NOT NULL,
-  `id_telefone` INT NOT NULL,
-  INDEX `fk1_telefone_cliente_idx` (`id_cliente` ASC) VISIBLE,
-  INDEX `fk2_telefone_cliente_idx` (`id_telefone` ASC) VISIBLE,
-  CONSTRAINT `fk1_telefone_cliente`
-    FOREIGN KEY (`id_cliente`)
     REFERENCES `carloca`.`cliente` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
@@ -159,7 +143,7 @@ CREATE TABLE IF NOT EXISTS `carloca`.`retirada` (
   `quilometragem` INT NOT NULL,
   `franquia_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk2_retirada_idx` (`franquia_id` ASC) VISIBLE,
+  INDEX `fk_retirada_1_idx` (`franquia_id` ASC) VISIBLE,
   CONSTRAINT `fk_retirada_1`
     FOREIGN KEY (`franquia_id`)
     REFERENCES `carloca`.`franquia` (`id`)
@@ -174,7 +158,7 @@ CREATE TABLE IF NOT EXISTS `carloca`.`devolucao` (
   `quilometragem` INT NOT NULL,
   `franquia_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk2_devolucao_idx` (`franquia_id` ASC) VISIBLE,
+  INDEX `fk_devolucao_1_idx` (`franquia_id` ASC) VISIBLE,
   CONSTRAINT `fk_devolucao_1`
     FOREIGN KEY (`franquia_id`)
     REFERENCES `carloca`.`franquia` (`id`)
@@ -191,10 +175,10 @@ CREATE TABLE IF NOT EXISTS `carloca`.`locacao` (
   `retirada_id` INT NOT NULL,
   `devolucao_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk1_locacao_idx` (`cliente_id` ASC) VISIBLE,
-  INDEX `fk2_locacao_idx` (`carro_id` ASC) VISIBLE,
-  INDEX `fk3_locacao_idx` (`retirada_id` ASC) VISIBLE,
-  INDEX `fk4_locacao_idx` (`devolucao_id` ASC) VISIBLE,
+  INDEX `fk_locacao_1_idx` (`cliente_id` ASC) VISIBLE,
+  INDEX `fk_locacao_2_idx` (`carro_id` ASC) VISIBLE,
+  INDEX `fk_locacao_3_idx` (`retirada_id` ASC) VISIBLE,
+  INDEX `fk_locacao_4_idx` (`devolucao_id` ASC) VISIBLE,
   CONSTRAINT `fk_locacao_1`
     FOREIGN KEY (`cliente_id`)
     REFERENCES `carloca`.`cliente` (`id`)
@@ -224,8 +208,8 @@ CREATE TABLE IF NOT EXISTS `carloca`.`estoque_carro` (
   `carro_id` INT NOT NULL,
   `franquia_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk1_estoque_carro_idx` (`franquia_id` ASC) VISIBLE,
-  INDEX `fk2_estoque_carro_idx` (`carro_id` ASC) VISIBLE,
+  INDEX `fk_estoque_carro_1_idx` (`franquia_id` ASC) VISIBLE,
+  INDEX `fk_estoque_carro_2_idx` (`carro_id` ASC) VISIBLE,
   CONSTRAINT `fk_estoque_carro_1`
     FOREIGN KEY (`franquia_id`)
     REFERENCES `carloca`.`franquia` (`id`)
