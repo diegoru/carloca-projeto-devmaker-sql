@@ -10,10 +10,6 @@ CREATE TABLE IF NOT EXISTS `carloca`.`cor` (
 ENGINE = InnoDB;
 
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 9099fd86bd43235fe64871ba9d14b843a5d122b3
 CREATE TABLE IF NOT EXISTS `carloca`.`montadora` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(45) NOT NULL,
@@ -90,11 +86,8 @@ CREATE TABLE IF NOT EXISTS `carloca`.`telefone` (
   `ddi` VARCHAR(3) NOT NULL,
   `ddd` VARCHAR(4) NOT NULL,
   `numero` VARCHAR(10) NOT NULL,
-<<<<<<< HEAD
   `contato` VARCHAR(45) NOT NULL,
-=======
   `contato` VARCHAR(90) NOT NULL,
->>>>>>> 9099fd86bd43235fe64871ba9d14b843a5d122b3
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -114,21 +107,18 @@ ENGINE = InnoDB;
 
 
 CREATE TABLE IF NOT EXISTS `carloca`.`endereco_cliente` (
-<<<<<<< HEAD
   `cliente_id` INT NOT NULL,
   `endereco_id` INT NOT NULL,
   INDEX `fk1_endereco_cliente_idx` (`cliente_id` ASC) VISIBLE,
   INDEX `fk2_endereco_cliente_idx` (`endereco_id` ASC) VISIBLE,
   CONSTRAINT `fk_endereco_cliente_1`
     FOREIGN KEY (`cliente_id`)
-=======
   `id_cliente` INT NOT NULL,
   `id_endereco` INT NOT NULL,
   INDEX `fk1_endereco_cliente_idx` (`id_cliente` ASC) VISIBLE,
   INDEX `fk2_endereco_cliente_idx` (`id_endereco` ASC) VISIBLE,
   CONSTRAINT `fk1_endereco_cliente`
     FOREIGN KEY (`id_cliente`)
->>>>>>> 9099fd86bd43235fe64871ba9d14b843a5d122b3
     REFERENCES `carloca`.`cliente` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
@@ -141,21 +131,18 @@ ENGINE = InnoDB;
 
 
 CREATE TABLE IF NOT EXISTS `carloca`.`telefone_cliente` (
-<<<<<<< HEAD
   `cliente_id` INT NOT NULL,
   `telefone_id` INT NOT NULL,
   INDEX `fk1_telefone_cliente_idx` (`cliente_id` ASC) VISIBLE,
   INDEX `fk2_telefone_cliente_idx` (`telefone_id` ASC) VISIBLE,
   CONSTRAINT `fk_telefone_cliente_1`
     FOREIGN KEY (`cliente_id`)
-=======
   `id_cliente` INT NOT NULL,
   `id_telefone` INT NOT NULL,
   INDEX `fk1_telefone_cliente_idx` (`id_cliente` ASC) VISIBLE,
   INDEX `fk2_telefone_cliente_idx` (`id_telefone` ASC) VISIBLE,
   CONSTRAINT `fk1_telefone_cliente`
     FOREIGN KEY (`id_cliente`)
->>>>>>> 9099fd86bd43235fe64871ba9d14b843a5d122b3
     REFERENCES `carloca`.`cliente` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
