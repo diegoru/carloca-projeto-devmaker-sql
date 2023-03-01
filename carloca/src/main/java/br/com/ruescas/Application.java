@@ -1,4 +1,4 @@
-package br.com.ruescas.model;
+package br.com.ruescas;
 
 public class Application {
     public static void main(String[] args) {
