@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -16,11 +17,25 @@ public class Endereco {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     private String logradouro;
+
     private String numero;
+
     private String complemento;
+
     private String bairro;
+
     private String cep;
+
     private String cidade;
+
     private String uf;
+
+    @OneToOne(mappedBy = "franquia")
+    private Franquia franquia;
+
+    @ManyToMany(mappedBy = "enderecos")
+    private List<Cliente> clientes;
+
 }

@@ -13,13 +13,21 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "devolucao")
 public class Devolucao {
+
     @EqualsAndHashCode.Include
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     @Column(name = "data_hora")
     private LocalDateTime dataHora;
+
     private Integer quilometragem;
-    @Column(name = "franquia_id")
-    private Integer franquiaId;
+
+    @ManyToOne
+    @JoinColumn(name = "franquia_id")
+    private Franquia franquia;
+
+    @OneToOne(mappedBy = "devolucao")
+    private Locacao locacao;
 }

@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.List;
 
 @Getter
 @Setter
@@ -13,11 +14,17 @@ import java.math.BigDecimal;
 @Entity
 @Table(name = "categoria")
 public class Categoria {
+
     @EqualsAndHashCode.Include
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     private String nome;
+
     @Column(name = "valor_diaria")
     private BigDecimal valorDiaria;
+
+    @OneToMany(mappedBy = "carro")
+    private List<Carro> carros;
 }

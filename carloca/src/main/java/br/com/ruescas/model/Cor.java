@@ -17,6 +17,7 @@ public class Cor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     @Enumerated(EnumType.STRING)
     private NomeCor nome;
 }

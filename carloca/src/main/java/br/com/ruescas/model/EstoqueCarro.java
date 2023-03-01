@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -12,14 +13,19 @@ import javax.persistence.*;
 @Entity
 @Table(name = "estoque_carro")
 public class EstoqueCarro {
+
     @EqualsAndHashCode.Include
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     private boolean disponivel;
-    @Column(name = "carro_id")
-    private Integer carroId;
-    @Column(name = "franquia_id")
-    private Integer franquiaId;
+
+    @OneToMany(mappedBy = "carro")
+    private List<Carro> carros;
+
+    @OneToMany
+    @Column(name = "franquia")
+    private List<Franquia> franquias;
 
 }

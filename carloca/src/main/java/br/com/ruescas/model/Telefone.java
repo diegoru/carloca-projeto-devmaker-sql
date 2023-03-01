@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -12,14 +13,24 @@ import javax.persistence.*;
 @Entity
 @Table(name = "telefone")
 public class Telefone {
+
     @EqualsAndHashCode.Include
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     @Enumerated(EnumType.STRING)
     private TipoTelefone tipo;
+
     private String ddi;
+
     private String ddd;
+
     private String numero;
+
     private String contato;
+
+    @ManyToMany(mappedBy = "telefones")
+    private List<Cliente> clientes;
+
 }
